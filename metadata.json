@@ -1,0 +1,6 @@
+{
+  "name": "Commander Conquest",
+  "description": "Lead your units, capture outposts, and dominate the map!",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

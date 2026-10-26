@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "Room": {
+      "title": "Room",
+      "description": "Multiplayer lobby and active match room for Commander Conquest",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique room code / identifier",
+          "maxLength": 64
+        },
+        "name": {
+          "type": "string",
+          "description": "Lobby room display name",
+          "maxLength": 100
+        },
+        "hostId": {
+          "type": "string",
+          "description": "User identifier of the room creator",
+          "maxLength": 128
+        },
+        "hostName": {
+          "type": "string",
+          "description": "Display name of the host",
+          "maxLength": 64
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the lobby room",
+          "enum": ["waiting", "in_game", "finished"]
+        },
+        "mapSize": {
+          "type": "string",
+          "description": "Selected map size",
+          "enum": ["small", "medium", "large"]
+        },
+        "slots": {
+          "type": "array",
+          "description": "List of up to 4 faction player slots"
+        },
+        "mapData": {
+          "type": "object",
+          "description": "Shared synchronized map seed, outposts, and cluster topology"
+        },
+        "gameState": {
+          "type": "object",
+          "description": "Host-synchronized snapshot of active battle units and outposts"
+        },
+        "playerInputs": {
+          "type": "object",
+          "description": "Live player commander positions and skill inputs"
+        },
+        "webrtc": {
+          "type": "object",
+          "description": "WebRTC peer connection signaling for real-time 60fps multiplayer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the room was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the room was last updated"
+        }
+      },
+      "required": ["id", "name", "hostId", "status", "mapSize", "slots"]
+    }
+  },
+  "firestore": {
+    "/rooms/{roomId}": {
+      "schema": "Room",
+      "description": "Collection of multiplayer lobby rooms and active matches"
+    }
+  }
+}
